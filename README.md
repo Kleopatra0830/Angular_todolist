@@ -29,7 +29,7 @@ To run this application locally, follow these steps:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/Kleopatra0830/Angular_todolist.git
-   cd todo-list-app
+   cd Angular_todolist
    ```
 
 2. **Install Dependencies:**
