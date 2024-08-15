@@ -1,0 +1,30 @@
+<div class="todo-container">
+    <h2 class="cute-header">Todo Lists</h2>
+  
+    <!-- Updated placeholder and description -->
+    <label for="listName">Name/description of list</label>
+    <input id="listName" [(ngModel)]="newListName" placeholder="Name/description of list" />
+  
+    
+    <small>(i.e.: “Weekend chores”, “Vacation planning”, ...)</small>
+  
+    <button (click)="addTodoList()">Add List</button>
+  
+    <div *ngFor="let list of todoLists">
+      <h3>{{ list.name }} <button (click)="deleteTodoList(list.id)">Delete List</button></h3>
+      <ul cdkDropList (cdkDropListDropped)="drop($event, list)">
+        <li *ngFor="let todo of list.todos" cdkDrag>
+          <input type="checkbox" [(ngModel)]="todo.completed" (ngModelChange)="toggleComplete(list.id, todo.id, $event)" />
+          <input [(ngModel)]="todo.title" (blur)="updateTodoTitle(list.id, todo.id, todo.title)" />
+          <button (click)="deleteTodoFromList(list.id, todo.id)">delete</button>
+        </li>
+      </ul>
+      
+  
+      <input [(ngModel)]="newTodos[list.id]" placeholder="Add new todo" />
+      <button (click)="addTodoToList(list.id)">Add</button>
+  
+      <button [disabled]="!allCompleted(list)" (click)="showSuccess()">All Done</button>
+    </div>
+  </div>
+  
